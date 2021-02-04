@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    try{
         stages {
             stage('Build') {
                 steps {
@@ -20,11 +19,9 @@ pipeline {
             }
         }
     }
-    catch(err){
-        stage('Email Notification'){
-            steps{
-                mail bcc: '', body: '${err}', cc: '', from: '', replyTo: '', subject: 'Jenkins Job Failed!', to: 'priyankapandey2797@gmail.com'
-            }
-        }
+    post{
+        failure {  
+                 mail bcc: '', body: "<b>Jenkins Build Failed!</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "priyankapandey2797@gmail.com";  
+             }  
     }
 }
