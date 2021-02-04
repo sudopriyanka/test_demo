@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage('Test'){
-            steps{
+            step{
                 echo 'Test Passed!'
             }
         }
