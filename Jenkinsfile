@@ -13,7 +13,7 @@ pipeline {
             }
         }
         stage('Email Notification'){
-            step{
+            steps{
                 mail bcc: '', body: '''Hello! This is test mail from Jenkins Demo Job
 Thanks!!''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'priyankapandey2797@gmail.com'
             }
